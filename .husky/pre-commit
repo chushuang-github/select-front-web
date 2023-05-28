@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# 提交代码之前，会执行这个脚本指令，去格式化代码
+pnpm run format
