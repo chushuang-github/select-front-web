@@ -18,7 +18,16 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    // 如果您使用 Volar，请在 tsconfig.json 中通过 compilerOptions.type 指定全局组件类型
+    "types": ["element-plus/global"],
+    // 解析非相对模块的基地址，默认是当前目录
+    "baseUrl": "./",
+    "paths": {
+      //路径映射，相对于baseUrl
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
