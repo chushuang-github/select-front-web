@@ -7,6 +7,8 @@ import "element-plus/dist/index.css";
 import "virtual:svg-icons-register";
 import App from "@/App.vue";
 import globalComponent from "@/components";
+// 路由
+import router from "@/router";
 import "@/styles/index.scss";
 
 const app = createApp(App);
@@ -17,4 +19,6 @@ app.use(ElementPlus, {
 });
 // 自定义全局组件
 app.use(globalComponent);
+// 注册路由
+app.use(router);
 app.mount("#app");
