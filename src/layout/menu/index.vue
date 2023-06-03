@@ -2,7 +2,11 @@
   <template v-for="(item, _index) in menuList" :key="item.path">
     <!-- 没有子路由 -->
     <template v-if="!item.children">
-      <el-menu-item v-if="!item.meta.hidden" :index="item.path" @click="goRoute">
+      <el-menu-item
+        v-if="!item.meta.hidden"
+        :index="item.path"
+        @click="goRoute"
+      >
         <template #title>
           <el-icon>
             <component :is="item.meta.icon"></component>
