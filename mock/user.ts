@@ -1,4 +1,5 @@
-//用户信息数据
+// 用户信息数据
+// 注意mock文件夹的位置，和src文件夹处于同一级目录
 function createUserList() {
   return [
     {
