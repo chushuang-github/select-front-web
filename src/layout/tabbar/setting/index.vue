@@ -5,7 +5,12 @@
     icon="Refresh"
     @click="updateRefresh"
   ></el-button>
-  <el-button size="small" circle icon="FullScreen"></el-button>
+  <el-button
+    size="small"
+    circle
+    icon="FullScreen"
+    @click="fullScreen"
+  ></el-button>
   <el-button size="small" circle icon="Setting"></el-button>
   <img class="avatar" src="../../../../public/logo.png" alt="" />
   <el-dropdown>
@@ -30,6 +35,20 @@ const layoutSettingStore = useLayoutSettingStore()
 // 刷新按钮点击的回调
 const updateRefresh = () => {
   layoutSettingStore.refresh = !layoutSettingStore.refresh
+}
+
+// 全屏按钮点击的回调
+const fullScreen = () => {
+  // dom对象的一个属性，可以用来判断当前是不是全屏模式
+  // 如果是全屏，会返回true；如果不是全屏，会返回null
+  const full = document.fullscreenElement
+  if (!full) {
+    // 切换为全屏模式
+    document.documentElement.requestFullscreen()
+  } else {
+    // 退出全屏模式
+    document.exitFullscreen()
+  }
 }
 </script>
 
