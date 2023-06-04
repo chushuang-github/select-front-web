@@ -31,9 +31,9 @@ import Menu from './menu/index.vue'
 import Main from './main/index.vue'
 import Tabbar from './tabbar/index.vue'
 
-let route = useRoute()
-let userStore = useUserStore()
-let layoutSettingStore = useLayoutSettingStore()
+const route = useRoute()
+const userStore = useUserStore()
+const layoutSettingStore = useLayoutSettingStore()
 </script>
 
 <script lang="ts">

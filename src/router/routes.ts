@@ -51,6 +51,7 @@ export const constantRoute: RouteRecordRaw[] = [
       hidden: false,
       icon: 'Lock',
     },
+    redirect: '/acl/user',
     children: [
       {
         path: '/acl/user',
@@ -93,6 +94,7 @@ export const constantRoute: RouteRecordRaw[] = [
       hidden: false,
       icon: 'Goods',
     },
+    redirect: '/product/trademark',
     children: [
       {
         path: '/product/trademark',

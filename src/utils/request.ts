@@ -3,7 +3,7 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
 // 创建axios实例
-let request = axios.create({
+const request = axios.create({
   // 路径上面会携带/api (环境变量通过 import.meta.env 取值)
   baseURL: import.meta.env.VITE_APP_BASE_API,
   // 请求超时

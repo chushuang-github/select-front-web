@@ -5,7 +5,7 @@ import { constantRoute } from '@/router/routes'
 import type { loginFormData } from '@/api/user/type'
 import type { UserState } from './type/type'
 
-let useUserStore = defineStore('user', {
+const useUserStore = defineStore('user', {
   state: (): UserState => {
     return {
       token: getToken(),

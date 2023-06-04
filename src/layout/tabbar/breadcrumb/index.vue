@@ -4,7 +4,11 @@
   </el-icon>
   <el-breadcrumb separator-icon="ArrowRight">
     <template v-for="item in route.matched" :key="item.path">
-      <el-breadcrumb-item v-show="item.meta.title" class="breadcrumb-item">
+      <el-breadcrumb-item
+        v-show="item.meta.title"
+        :to="item.path"
+        class="breadcrumb-item"
+      >
         <el-icon>
           <component :is="item.meta.icon"></component>
         </el-icon>

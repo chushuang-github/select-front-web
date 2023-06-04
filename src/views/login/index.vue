@@ -48,12 +48,12 @@ import { useRouter } from 'vue-router'
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time'
 
-let useStore = useUserStore()
-let router = useRouter()
+const useStore = useUserStore()
+const router = useRouter()
 const loginForms = ref()
 
-let loading = ref<boolean>(false)
-let loginForm = reactive({
+const loading = ref<boolean>(false)
+const loginForm = reactive({
   username: 'admin',
   password: '111111',
 })
@@ -73,7 +73,7 @@ const validatePassWord = (_rule: any, value: any, callback: any) => {
     callback(new Error('密码长度至少为6位'))
   }
 }
-let rules = {
+const rules = {
   username: [{ validator: validateUserName, trigger: 'change' }],
   password: [{ validator: validatePassWord, trigger: 'change' }],
 }

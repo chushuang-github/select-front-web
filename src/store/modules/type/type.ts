@@ -6,4 +6,5 @@ export interface UserState {
 
 export interface SettingState {
   fold: boolean
+  refresh: boolean
 }

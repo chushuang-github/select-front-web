@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import setting from '@/setting'
 import useLayoutSettingStore from '@/store/modules/setting'
-let layoutSettingStore = useLayoutSettingStore()
+const layoutSettingStore = useLayoutSettingStore()
 </script>
 
 <script lang="ts">
