@@ -58,5 +58,6 @@ module.exports = {
     'vue/attribute-hyphenation': 'off', // 对模板中的自定义组件强制执行属性命名样式
 
     'prefer-const': 'off', // 不会修改的变量，使用let和const定义都可以
+    'vue/no-reserved-component-names': 'off',
   },
 }
