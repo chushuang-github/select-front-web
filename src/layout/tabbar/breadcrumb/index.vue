@@ -3,16 +3,25 @@
     <component :is="layoutSettingStore.fold ? 'Expand' : 'Fold'"></component>
   </el-icon>
   <el-breadcrumb separator-icon="ArrowRight">
-    <el-breadcrumb-item>权限管理</el-breadcrumb-item>
-    <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+    <template v-for="item in route.matched" :key="item.path">
+      <el-breadcrumb-item v-show="item.meta.title" class="breadcrumb-item">
+        <el-icon>
+          <component :is="item.meta.icon"></component>
+        </el-icon>
+        <span class="title">{{ item.meta.title }}</span>
+      </el-breadcrumb-item>
+    </template>
   </el-breadcrumb>
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
 import useLayoutSettingStore from '@/store/modules/setting'
 
-// 控制菜单的折叠还是展开
+// route里面的matched属性，可以做面包屑功能(里面已经将所有的面包屑路径收集好了)
+const route = useRoute()
 const layoutSettingStore = useLayoutSettingStore()
+// 控制菜单的折叠还是展开
 const changeIcon = () => {
   layoutSettingStore.fold = !layoutSettingStore.fold
 }
@@ -27,5 +36,12 @@ export default {
 <style scoped lang="scss">
 .icon {
   margin-right: 10px;
+}
+.breadcrumb-item {
+  margin-top: 3px;
+  .title {
+    margin: 0px 5px;
+    vertical-align: top;
+  }
 }
 </style>

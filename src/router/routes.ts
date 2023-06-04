@@ -15,9 +15,9 @@ export const constantRoute: RouteRecordRaw[] = [
     component: () => import('@/layout/index.vue'),
     name: 'layout', // 命名路由(做路由权限用的)
     meta: {
-      title: 'layout',
+      title: '',
       hidden: false,
-      icon: 'Avatar',
+      icon: '',
     },
     redirect: '/home',
     children: [
