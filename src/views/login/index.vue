@@ -43,13 +43,14 @@
 import { reactive, ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
 import useUserStore from '@/store/modules/user'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 // @ts-ignore
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time'
 
 const useStore = useUserStore()
 const router = useRouter()
+const route = useRoute()
 const loginForms = ref()
 
 const loading = ref<boolean>(false)
@@ -84,7 +85,8 @@ const login = async () => {
   loading.value = true
   try {
     await useStore.userLogin(loginForm)
-    router.push('/')
+    const redirect: any = route.query.redirect
+    router.push({ path: redirect || '/' })
     ElNotification({
       type: 'success',
       title: `HI,${getTime()}好`,
