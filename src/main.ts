@@ -11,6 +11,8 @@ import globalComponent from '@/components'
 import router from '@/router'
 // 仓库
 import pinia from '@/store'
+// 路由鉴权文件
+import './permission'
 import '@/styles/index.scss'
 
 const app = createApp(App)
