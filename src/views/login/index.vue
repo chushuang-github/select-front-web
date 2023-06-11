@@ -44,7 +44,6 @@ import { reactive, ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
 import useUserStore from '@/store/modules/user'
 import { useRouter, useRoute } from 'vue-router'
-// @ts-ignore
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time'
 

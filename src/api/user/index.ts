@@ -13,7 +13,7 @@ enum API {
   LOGOUT_RUL = '/admin/acl/index/logout', // 退出登录
 }
 
-// 登录接口
+// 登录
 export const reqLogin = (data: loginFormData) => {
   return request.post<any, loginResponseData>(API.LOGIN_URL, data)
 }

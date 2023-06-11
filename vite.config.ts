@@ -25,7 +25,6 @@ export default defineConfig(({ command, mode }) => {
       // mock数据
       viteMockServe({
         // 保证开发阶段可以使用mock接口
-        // @ts-ignore
         localEnabled: command === 'serve',
       }),
     ],

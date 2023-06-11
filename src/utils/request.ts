@@ -1,5 +1,4 @@
 import axios from 'axios'
-// @ts-ignore
 import { ElMessage } from 'element-plus'
 import useUserStore from '@/store/modules/user'
 
