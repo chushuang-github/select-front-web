@@ -25,12 +25,17 @@
               type="warning"
               @click="updateTrademark(row)"
             ></el-button>
-            <el-button
-              size="small"
+
+            <el-popconfirm
+              :title="`您确定要删除${row.tmName}吗?`"
+              width="250px"
               icon="Delete"
-              type="danger"
-              @click="deleteTradkmark(row)"
-            ></el-button>
+              @confirm="deleteTradkmark(row.id)"
+            >
+              <template #reference>
+                <el-button size="small" icon="Delete" type="danger"></el-button>
+              </template>
+            </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
@@ -50,15 +55,21 @@
     <el-dialog
       v-model="dialogFormVisible"
       :title="`${trademarkParams.id ? '修改' : '添加'}品牌`"
+      @close="cancel"
     >
-      <el-form label-width="100px">
-        <el-form-item label="品牌名称">
+      <el-form
+        ref="formRef"
+        label-width="100px"
+        :model="trademarkParams"
+        :rules="rules"
+      >
+        <el-form-item label="品牌名称" prop="tmName">
           <el-input
             v-model="trademarkParams.tmName"
             placeholder="请输入品牌名称"
           />
         </el-form-item>
-        <el-form-item label="品牌Logo">
+        <el-form-item label="品牌Logo" prop="logoUrl">
           <el-upload
             class="avatar-uploader"
             action="/api/admin/product/fileUpload"
@@ -89,6 +100,7 @@ import { ref, onMounted, reactive } from 'vue'
 import {
   reqHasTrademark,
   reqAddOrUpdateTrademark,
+  reqDeleteTrademark,
 } from '@/api/product/trademark'
 import type {
   Records,
@@ -96,7 +108,7 @@ import type {
   TradeMark,
 } from '@/api/product/trademark/type'
 import { ElMessage } from 'element-plus'
-import { type UploadProps } from 'element-plus'
+import type { UploadProps, FormInstance, FormRules } from 'element-plus'
 
 const tableData = ref<Records>([])
 const pageNo = ref<number>(1)
@@ -108,6 +120,27 @@ const trademarkParams = reactive<TradeMark>({
   tmName: '',
   logoUrl: '',
 })
+
+// 自定义表达校验
+const formRef = ref<FormInstance>()
+const validateTmName = (_rule: any, value: any, callback: any) => {
+  if (value.trim().length >= 2) {
+    callback()
+  } else {
+    callback(new Error('品牌名称位数大于等于2位'))
+  }
+}
+const validateLogoUrl = (_rule: any, value: any, callback: any) => {
+  if (value) {
+    callback()
+  } else {
+    callback(new Error('品牌Logo图片不能为空'))
+  }
+}
+const rules: FormRules = {
+  tmName: [{ required: true, trigger: 'blur', validator: validateTmName }],
+  logoUrl: [{ required: true, trigger: 'blur', validator: validateLogoUrl }],
+}
 
 onMounted(() => {
   getHasTrademark()
@@ -140,15 +173,31 @@ const updateTrademark = (row: TradeMark) => {
 }
 
 // 删除品牌
-const deleteTradkmark = (row: TradeMark) => {}
+const deleteTradkmark = async (id: number) => {
+  const result = await reqDeleteTrademark(id)
+  if (result.code === 200) {
+    ElMessage({
+      type: 'success',
+      message: '删除品牌成功',
+    })
+    getHasTrademark()
+  } else {
+    ElMessage({
+      type: 'error',
+      message: '删除品牌失败',
+    })
+  }
+}
 
 // 取消
 const cancel = () => {
   dialogFormVisible.value = false
+  formRef.value?.resetFields()
 }
 
 // 确定
 const confirm = async () => {
+  await formRef.value?.validate()
   const result = await reqAddOrUpdateTrademark(trademarkParams)
   if (result.code === 200) {
     ElMessage({
@@ -168,7 +217,6 @@ const confirm = async () => {
 
 // 图片上传之前 (上传png/jpg/gif，文件大小限制为4MB)
 const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
-  console.log(rawFile)
   const imgType = ['image/png', 'image/jpeg', 'image/gif']
   if (imgType.includes(rawFile.type)) {
     if (rawFile.size / 1024 / 1024 < 4) {
@@ -192,6 +240,7 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
 // 图片上传成功
 const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
   trademarkParams.logoUrl = response.data
+  formRef.value?.clearValidate('logoUrl')
 }
 </script>
 
