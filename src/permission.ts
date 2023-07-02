@@ -3,6 +3,7 @@ import router from './router'
 // 注意：路由鉴权文件里面使用pinia仓库数据的方法
 import pinia from './store'
 import useUserStore from '@/store/modules/user'
+// @ts-ignore
 import NProgress from 'nprogress'
 import setting from './setting'
 import 'nprogress/nprogress.css'
