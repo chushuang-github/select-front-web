@@ -16,3 +16,23 @@ export interface CategoryObj {
 export interface CategoryResponseData extends ResponseData {
   data: CategoryObj[]
 }
+
+// 品牌管理列表类型
+export interface AttrValue {
+  id?: number
+  valueName: string
+  attrId?: number
+  flag?: boolean
+}
+
+export interface Attr {
+  id?: number
+  attrName: string
+  categoryId: number | string
+  categoryLevel: number
+  attrValueList: AttrValue[]
+}
+
+export interface AttrResponseData extends ResponseData {
+  data: Attr[]
+}
