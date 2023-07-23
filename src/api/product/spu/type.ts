@@ -72,6 +72,7 @@ export interface SaleAttrValue {
 export interface SaleAttr {
   flag?: boolean
   saleAttrValue?: string
+  saleIdAndValueId?: string
   id?: number
   createTime?: null
   updateTime?: null
@@ -95,4 +96,32 @@ export interface HasSaleAttr {
 // 销售属性类型接口返回的数据类型
 export interface HasSaleAttrResponseData extends ResponseData {
   data: HasSaleAttr[]
+}
+
+// 添加sku数据类型
+export interface Attr {
+  attrId: number | string
+  valueId: number | string
+}
+export interface SaleAttr {
+  saleAttrId: number | string
+  saleAttrValueId: number | string
+}
+
+export interface SkuData {
+  category3Id: number | string
+  spuId: number | string
+  tmId: number | string
+  skuName: string
+  price: number | string
+  weight: number | string
+  skuDesc: string
+  skuAttrValueList?: Attr[]
+  skuSaleAttrValueList?: SaleAttr[]
+  skuDefaultImg: string
+}
+
+// spu下面的sku数据
+export interface SkuInfoData extends ResponseData {
+  data: SkuData[]
 }

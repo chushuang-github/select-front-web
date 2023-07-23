@@ -27,6 +27,7 @@ export interface AttrValue {
 
 export interface Attr {
   id?: number
+  attrIdAndValueId?: string
   attrName: string
   categoryId: number | string
   categoryLevel: number
