@@ -103,7 +103,7 @@ export interface Attr {
   attrId: number | string
   valueId: number | string
 }
-export interface SaleAttr {
+export interface SaleAttrTemp {
   saleAttrId: number | string
   saleAttrValueId: number | string
 }
@@ -117,7 +117,7 @@ export interface SkuData {
   weight: number | string
   skuDesc: string
   skuAttrValueList?: Attr[]
-  skuSaleAttrValueList?: SaleAttr[]
+  skuSaleAttrValueList?: SaleAttrTemp[]
   skuDefaultImg: string
 }
 
