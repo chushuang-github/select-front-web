@@ -26,7 +26,6 @@ export default {
   height: 100%;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #ccc;
   .tabbar_left {
     display: flex;
     align-items: center;

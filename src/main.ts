@@ -14,6 +14,9 @@ import pinia from '@/store'
 // 路由鉴权文件
 import './permission'
 import '@/styles/index.scss'
+// 暗黑模式需要的样式（element-ui已经支持暗黑模式了）
+// https://element-plus.org/zh-CN/guide/dark-mode.html
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 const app = createApp(App)
 
