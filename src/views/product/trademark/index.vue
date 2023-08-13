@@ -96,7 +96,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, reactive } from 'vue'
+import { ref, onMounted, reactive, nextTick } from 'vue'
 import {
   reqHasTrademark,
   reqAddOrUpdateTrademark,
@@ -168,8 +168,10 @@ const addTrademark = () => {
 
 // 编辑品牌
 const updateTrademark = (row: TradeMark) => {
-  Object.assign(trademarkParams, row)
   dialogFormVisible.value = true
+  nextTick(() => {
+    Object.assign(trademarkParams, row)
+  })
 }
 
 // 删除品牌
