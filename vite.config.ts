@@ -33,6 +33,7 @@ export default defineConfig(({ command, mode }) => {
       alias: {
         '@': path.resolve('./src'), // 相对路径别名配置，使用 @ 代替 src
       },
+      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
     },
     // scss全局变量的配置
     css: {

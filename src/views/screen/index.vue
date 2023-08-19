@@ -5,9 +5,20 @@
         <Top />
       </div>
       <div class="bottom">
-        <div class="left">左侧</div>
-        <div class="center">中间</div>
-        <div class="right">右侧</div>
+        <div class="left">
+          <Tourist class="tourist" />
+          <Sex class="sex" />
+          <Age class="age" />
+        </div>
+        <div class="center">
+          <Map class="map" />
+          <Line class="line" />
+        </div>
+        <div class="right">
+          <Rank class="rank" />
+          <Year class="year" />
+          <Counter class="counter" />
+        </div>
       </div>
     </div>
   </div>
@@ -16,6 +27,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import Top from './components/top/index.vue'
+import Tourist from './components/tourist/index.vue'
+import Sex from './components/sex/index.vue'
+import Age from './components/age/index.vue'
+import Map from './components/map/index.vue'
+import Line from './components/line/index.vue'
+import Rank from './components/rank/index.vue'
+import Year from './components/year/index.vue'
+import Counter from './components/counter/index.vue'
 
 const screenRef = ref()
 // 缩放的比例
@@ -53,13 +72,44 @@ window.onresize = () => {
     .bottom {
       display: flex;
       .left {
+        display: flex;
+        flex-direction: column;
         flex: 1;
+        height: 1040px;
+        .tourist {
+          flex: 1.2;
+        }
+        .sex {
+          flex: 1;
+        }
+        .age {
+          flex: 1;
+        }
       }
       .center {
         flex: 2;
+        display: flex;
+        flex-direction: column;
+        .map {
+          flex: 4;
+        }
+        .line {
+          flex: 1.4;
+        }
       }
       .right {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        .rank {
+          flex: 1.2;
+        }
+        .year {
+          flex: 1;
+        }
+        .counter {
+          flex: 1;
+        }
       }
     }
   }
