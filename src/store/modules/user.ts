@@ -7,14 +7,27 @@ import type {
 } from '@/api/user/type'
 import { setToken, getToken, removeToken } from '@/utils/token'
 // 引入路由 (常量路由)
-import { constantRoute } from '@/router/routes'
+import { constantRoute, anyRoute, asyncRoute } from '@/router/routes'
+import router from '@/router'
 import type { UserState } from './type/type'
+import cloneDeep from 'lodash/cloneDeep'
+
+const filterAsyncRoute = (asyncRoute: any, routes: any) => {
+  return asyncRoute.filter((item: any) => {
+    if (routes.includes(item.name)) {
+      if (item.children && item.children.length) {
+        item.children = filterAsyncRoute(item.children, routes)
+      }
+      return true
+    }
+  })
+}
 
 const useUserStore = defineStore('user', {
   state: (): UserState => {
     return {
       token: getToken(),
-      menuRoutes: constantRoute,
+      menuRoutes: [],
       username: '',
       avatar: '',
     }
@@ -37,6 +50,15 @@ const useUserStore = defineStore('user', {
       if (result.code === 200) {
         this.username = result.data.name
         this.avatar = result.data.avatar
+        const userAsyncRoute = filterAsyncRoute(
+          cloneDeep(asyncRoute),
+          result.data.routes,
+        )
+        const arr = [...userAsyncRoute, ...anyRoute]
+        this.menuRoutes = [...constantRoute, ...arr]
+        arr.forEach((item: any) => {
+          router.addRoute(item)
+        })
         return 'ok'
       } else {
         return Promise.reject(new Error(result.message))

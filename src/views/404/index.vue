@@ -1,9 +1,17 @@
 <template>
-  <div>
-    <h1>我是一级路由 - 404</h1>
+  <div class="not-found">
+    <img src="../../assets/images/error_images/404.png" />
   </div>
 </template>
 
 <script setup lang="ts"></script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.not-found {
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+</style>

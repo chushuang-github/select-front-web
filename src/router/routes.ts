@@ -43,6 +43,19 @@ export const constantRoute: RouteRecordRaw[] = [
     },
   },
   {
+    path: '/404',
+    component: () => import('@/views/404/index.vue'),
+    name: '404', // 命名路由(做路由权限用的)
+    meta: {
+      title: '404',
+      hidden: true,
+    },
+  },
+]
+
+// 异步路由
+export const asyncRoute: RouteRecordRaw[] = [
+  {
     path: '/acl',
     component: () => import('@/layout/index.vue'),
     name: 'Acl', // 命名路由(做路由权限用的)
@@ -138,16 +151,10 @@ export const constantRoute: RouteRecordRaw[] = [
       },
     ],
   },
-  {
-    path: '/404',
-    component: () => import('@/views/404/index.vue'),
-    name: '404', // 命名路由(做路由权限用的)
-    meta: {
-      title: '404',
-      hidden: true,
-    },
-  },
-  // 任意路由
+]
+
+// 任意路由
+export const anyRoute: RouteRecordRaw[] = [
   {
     path: '/:pathMatch(.*)*',
     redirect: '/404',
